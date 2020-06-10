@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Collections;
 
 namespace CalcPractice
 {
@@ -27,6 +28,13 @@ namespace CalcPractice
             state = memento.SavedState;
             Console.WriteLine("Originator: State after restoring from Memento: " + state);
         }
+        /*public void ClearCalculations()
+        {
+            state = savedStates.Clear();
+            Console.WriteLine("Originator: State after clearing: " + state);
+
+        }
+        */
 
         public class Memento
         {
@@ -36,7 +44,7 @@ namespace CalcPractice
             {
                 SavedState = stateToSave;
             }
-           
+
         }
         private decimal output;
         //public decimal runningTotal;
@@ -102,6 +110,8 @@ namespace CalcPractice
             Environment.Exit(0);
 
         }
+
+      
     }
 }
         /*

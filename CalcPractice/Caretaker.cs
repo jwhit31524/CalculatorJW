@@ -99,6 +99,8 @@ namespace CalcPractice
                     localOutput = calculator.DivideNumbers(enteredNumber1, enteredNumber2);
                 }
 
+                
+
                 rtSum = rtSum + calculator.GetOutput();
                 calculator.SetOutput(localOutput);
                 Console.WriteLine();
@@ -121,18 +123,55 @@ namespace CalcPractice
                     // this is as fast as you're going to get.
                 }
                 */
-               /* foreach (Calc.Memento calcSum in savedStates)
-                {
-                 
-                } */
-               // calculator.Set($"{calculator.GetOutput()}");
-               // savedStates.Push(calculator.SaveToMemento());
-                calculator.RestoreFromMemento(savedStates.Peek());
-                _continue = EnterAgainPrompt();
-                Console.WriteLine();
+                /* foreach (Calc.Memento calcSum in savedStates)
+                 {
+
+                 } */
+                // calculator.Set($"{calculator.GetOutput()}");
+                // savedStates.Push(calculator.SaveToMemento());
 
 
+                Console.WriteLine("Please type the corresponding symbol of which function you would like to perform next: ");
+
+                Console.WriteLine("\tc - Continue with program");
+                Console.WriteLine("\tu - Undo");
+                //Console.WriteLine("\tc - Clear");
+                Console.WriteLine("\tex - Exit");
                
+                // Console.WriteLine("\te - Equals");
+
+                string enteredSecondFunction = Console.ReadLine();
+
+               // decimal localOutput = 0;
+                if (enteredSecondFunction == "c")
+                {
+                    _continue = EnterAgainPrompt();
+                    Console.WriteLine();
+
+                }
+               else if (enteredSecondFunction == "u")
+                {
+                    calculator.RestoreFromMemento(savedStates.Peek());
+                }
+              /*  else if (enteredSecondFunction == "c")
+                {
+                    calculator.ClearCalculations(savedStates.Peek());
+
+                }
+                */
+                else if (enteredSecondFunction == "ex")
+                {
+
+                    calculator.ExitCalculator();
+                }
+              
+
+
+               // calculator.ClearStack(savedStates.Clear());
+               // _continue = EnterAgainPrompt();
+               // Console.WriteLine();
+
+
             }
         }
     }
