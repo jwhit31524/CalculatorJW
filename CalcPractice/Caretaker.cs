@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace CalcPractice
 {
     class Caretaker
     {
+       // decimal enteredNumber1;
         private static bool EnterAgainPrompt()
         {
+            
             Console.WriteLine("Enter Another Calculation? \n \n Type: 'Y' for yes or 'N' for no");
             string answerToEnterAgain = (Console.ReadLine());
             if (answerToEnterAgain.ToLower() != "y")
@@ -16,13 +20,71 @@ namespace CalcPractice
             }
             return true;
         }
-        public static void Main(string[] args)
+        private static bool UndoAgainPrompt()
+        {
+
+
+            Console.WriteLine("Undo Another Calculation? \n \n Type: 'Y' for yes or 'N' for no");
+            string answerToEnterAgain = (Console.ReadLine());
+            if (answerToEnterAgain.ToLower() != "y")
+            {
+                return false;
+            }
+            return true;
+        }
+      /*  private static void PromptForFirstNumber()
+        {
+            bool isLegitNumber = true;
+            Console.WriteLine("Please enter a number");
+
+            while (isLegitNumber)
+            {
+
+                try
+                {
+                    decimal enteredNumber1 = decimal.Parse(Console.ReadLine());
+                    break;
+                }
+                catch
+                {
+                    Console.WriteLine("Please enter a valid number");
+                }
+            }
+           
+        }
+            private static void PromptForOperation()
+            {
+                Console.WriteLine("Please type the corresponding symbol of which operation you want to perform on the number: ");
+
+                Console.WriteLine("\t+ - Add");
+                Console.WriteLine("\t- - Subtract");
+                Console.WriteLine("\t* - Multiply");
+                Console.WriteLine("\t/ - Divide");
+                // Console.WriteLine("\te - Equals");
+
+                string enteredOperation = Console.ReadLine();
+            }
+        private static void PromptForSecondNumber()
+        {
+            Console.WriteLine("Please enter a second number for the operation");
+            decimal enteredNumber2 = decimal.Parse(Console.ReadLine());
+
+        
+        }
+        */
+        static void Main(string[] args)
         {
             bool _continue = true;
 
             StringBuilder runtotal = new StringBuilder();
 
+
             decimal rtSum = 0;
+
+            Stack<Calc.Memento> savedStates = new Stack<Calc.Memento>();
+
+
+            Calc calculator = new Calc();
 
 
             while (_continue)
@@ -42,10 +104,6 @@ namespace CalcPractice
                  originator.RestoreFromMemento(savedStates[1]);
 
          */
-                Stack<Calc.Memento> savedStates = new Stack<Calc.Memento>();
-
-
-                Calc calculator = new Calc();
 
 
 
@@ -59,9 +117,86 @@ namespace CalcPractice
 
 
 
-                Console.WriteLine("Please enter a number");
-                decimal enteredNumber1 = decimal.Parse(Console.ReadLine());
+                // PromptForFirstNumber();
 
+                //  PromptForOperation();
+
+                //  PromptForSecondNumber();
+
+
+
+                // string enteredNumb = Console.ReadLine();
+
+                //  decimal enteredNumber1;
+
+
+                /* if (!Regex.IsMatch(enteredNumber1,"^[0-9]\\\\d{0,9}(\\\\.\\\\d{1,3})?%?$"))
+                 {
+                     Console.WriteLine("Numbers only");
+                 }
+                 */
+
+                /*    if (!decimal.TryParse(enteredNumb, out enteredNumber1))
+                    {
+                        Console.WriteLine("Numbers only");
+
+                    }
+                    */
+
+
+
+
+
+
+                //else
+                // Console.WriteLine("Unable to convert '{0}'.", enteredNumber1);
+
+
+                //try
+                // {
+
+
+                // }
+                //catch (FormatException formatException)
+                // {
+                //  Console.WriteLine($"\n {formatException.Message}");
+                // Console.WriteLine("You must enter a number");
+                // }
+
+
+
+
+                // Use a switch statement to do the math.
+
+                // bool isLegitNumber = true;
+                //  Console.WriteLine("Please enter a number");
+
+                //  while (isLegitNumber)
+                //  {
+
+                //   try
+                //    {
+                decimal enteredNumber1;
+                Console.WriteLine("Please enter a number");
+                string enteredNumb = Console.ReadLine();
+
+                if (!decimal.TryParse(enteredNumb, out enteredNumber1))
+                {
+                    Console.WriteLine("Please restart the program and enter a legitimate first number for the operation");
+
+                    break;
+                   // Console.WriteLine("Please enter a legitimate number");
+                  //  Console.WriteLine("Please enter a number");
+                  //  enteredNumb = Console.ReadLine();
+
+                }
+                //  break;
+                // }
+                //  catch
+                //  {
+                //      Console.WriteLine("Please enter a valid number");
+                //  }
+                //  }
 
                 Console.WriteLine("Please type the corresponding symbol of which operation you want to perform on the number: ");
 
@@ -73,11 +208,47 @@ namespace CalcPractice
 
                 string enteredOperation = Console.ReadLine();
 
+                // if (!Regex.IsMatch(enteredOperation, "^[a-zA-Z]*$"))
+
+                if (!Regex.IsMatch(enteredOperation, "^(?=.*\\+).{1}$ || ^(?=.*\\-).{1}$ || ^(?=.*\\*).{1}$ || ^(?=.*\\/).{1}$")) 
+                {
+                    Console.WriteLine("Please restart the program and enter one of the symbols + - * / for the operation you want to complete");
+                    break;
+                }
+              /*  else if (!Regex.IsMatch(enteredOperation, "^(?=.*\\-).{1}$"))
+                {
+                    Console.WriteLine("Please restart the program and enter one of the symbols + - * / for the operation you want to complete");
+                    break;
+                }
+                else if(!Regex.IsMatch(enteredOperation, "^(?=.*\\*).{1}$"))
+                {
+                    Console.WriteLine("Please restart the program and enter one of the symbols + - * / for the operation you want to complete");
+                    break;
+                }
+                else if (!Regex.IsMatch(enteredOperation, "^(?=.*\\/).{1}$"))
+                {
+                    Console.WriteLine("Please restart the program and enter one of the symbols + - * / for the operation you want to complete");
+                    break;
+                }
+                */
+
+
+
+
+                decimal enteredNumber2;
                 Console.WriteLine("Please enter a second number for the operation");
-                decimal enteredNumber2 = decimal.Parse(Console.ReadLine());
+                string enteredNumb2 = Console.ReadLine();
 
+                if (!decimal.TryParse(enteredNumb2, out enteredNumber2))
+                {
+                    Console.WriteLine("Please restart the program and enter a legitimate number for the second operation");
 
-                // Use a switch statement to do the math.
+                    break;
+                   // Console.WriteLine("Please enter a second number for the operation");
+                   // enteredNumb2 = Console.ReadLine();
+
+                }
+
                 decimal localOutput = 0;
                 if (enteredOperation == "+")
                 {
@@ -99,8 +270,9 @@ namespace CalcPractice
                     localOutput = calculator.DivideNumbers(enteredNumber1, enteredNumber2);
                 }
 
-                
 
+
+                //savedStates = savedStates + calculator.GetOutput();
                 rtSum = rtSum + calculator.GetOutput();
                 calculator.SetOutput(localOutput);
                 Console.WriteLine();
@@ -129,9 +301,9 @@ namespace CalcPractice
                  } */
                 // calculator.Set($"{calculator.GetOutput()}");
                 // savedStates.Push(calculator.SaveToMemento());
+               
 
-
-                Console.WriteLine("Please type the corresponding symbol of which function you would like to perform next: ");
+                    Console.WriteLine("Please type the corresponding symbol of which function you would like to perform next: ");
 
                 Console.WriteLine("\tc - Continue with program");
                 Console.WriteLine("\tu - Undo");
@@ -142,40 +314,59 @@ namespace CalcPractice
 
                 string enteredSecondFunction = Console.ReadLine();
 
-               // decimal localOutput = 0;
-                if (enteredSecondFunction == "c")
+               // bool _continueUndo = true;
+
+                //while (_continueUndo)
                 {
-                    _continue = EnterAgainPrompt();
-                    Console.WriteLine();
+                    // decimal localOutput = 0;
+                    if (enteredSecondFunction == "c")
+                    {
+                        _continue = EnterAgainPrompt();
+                        Console.WriteLine();
+
+                    }
+                    else if (enteredSecondFunction == "u")
+                    {
+                        //bool _continueUndo = true;
+
+                        //  while (_continueUndo)
+                        //  {
+
+                        calculator.RestoreFromMemento(savedStates.Peek());
+                        //_continueUndo = UndoAgainPrompt();
+                        UndoAgainPrompt();
+                        Console.WriteLine();
+
+                        //  }
+                        // _continue = EnterAgainPrompt();
+                        // Console.WriteLine();
+
+                    }
+                    /*  else if (enteredSecondFunction == "c")
+                      {
+                          calculator.ClearCalculations(savedStates.Peek());
+
+                      }
+                      */
+                    else if (enteredSecondFunction == "ex")
+                    {
+
+                        calculator.ExitCalculator();
+                    }
 
                 }
-               else if (enteredSecondFunction == "u")
-                {
-                    calculator.RestoreFromMemento(savedStates.Peek());
                 }
-              /*  else if (enteredSecondFunction == "c")
-                {
-                    calculator.ClearCalculations(savedStates.Peek());
-
-                }
-                */
-                else if (enteredSecondFunction == "ex")
-                {
-
-                    calculator.ExitCalculator();
-                }
-              
-
-
-               // calculator.ClearStack(savedStates.Clear());
-               // _continue = EnterAgainPrompt();
-               // Console.WriteLine();
+                // calculator.ClearStack(savedStates.Clear());
+                // _continue = EnterAgainPrompt();
+                // Console.WriteLine();
 
 
             }
         }
+   
+
     }
-}
+
         /*
         static void Main(string[] args)
         {
